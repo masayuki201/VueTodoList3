@@ -1,25 +1,28 @@
 <template>
   <h1>{{ title }}</h1>
-  <input type="text" v-model="newList"/>
-  <button @click.prevent="addTodo">追加する</button>
-  <button @click="deleteTodo">削除</button>
+  <input type="text" v-model="newList" placeholder="内容"/>
+  <button @click.prevent="addTodo">追加</button>
+  <button  class="deleteBtn" @click="deleteTodo">削除</button>
 
 
-  <p v-if="lists.length === 0">ToDoがありません！</p>
+  <p v-if="lists.length === 0" class="warningMessage">Todoがありません！</p>
   <ul v-else>
+    <input type="text" v-model="query">検索
+
     <li v-for="(list, index) in lists" :key="index">
       <input type="checkbox" v-model="list.isDone" />
       <span :class="{'list-done':list.isDone }">{{ list.text }}</span>
-      <button @click="editTodo = true">編集</button>
+      <div v-if="list.isActive">
+        <span>
+          <input type="text" v-model="list.text">
+        </span>
+        <button @click="updateDone(index)">完了</button>
+      </div>
+      <button v-show="!list.isActive" @click="updateTodo(index)">編集</button>
     </li>
   </ul>
 
 </template>
-
-<!--<template v-model="editTodo">-->
-<!--  ダイアログ-->
-<!--</template>-->
-
 
 <script>
 export default {
@@ -32,6 +35,7 @@ export default {
     }
   },
   methods:{
+    //追加
     addTodo(){
       if(!this.newList){
         alert('文字を入力して下さい')
@@ -43,9 +47,16 @@ export default {
       })
       this.newList = ''
     },
-    // editTodo(){
-    //   console.log('あたり')
-    // },
+    //編集
+    updateTodo(index){
+      this.lists[index].isActive = true
+      this.lists[index].item = this.list[index].item
+    },
+    //完了
+    updateDone(index){
+      this.lists[index].isActive = false
+    },
+    //削除
     deleteTodo(){
       this.lists = this.lists.filter((list) => !list.isDone)
     },
@@ -64,4 +75,14 @@ export default {
 body {
   background-color: rgba(16, 206, 1, 0.98);
 }
+
+.deleteBtn {
+  background-color: red;
+  color:white;
+}
+
+.warningMessage {
+  color: red;
+}
+
 </style>

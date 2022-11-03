@@ -4,12 +4,12 @@
   <button class="addBtn" @click.prevent="addTodo">追加</button>
   <button  class="deleteBtn" @click="deleteTodo">削除</button>
 
-
+<div class="contents">
   <p v-if="lists.length === 0" class="warningMessage">Todoがありません！</p>
-  <ul v-else>
+  <ul class="contents_ul" v-else>
 <!--    <input type="text" v-model="query">検索-->
 
-    <li v-for="(list, index) in lists" :key="index">
+    <li class="contents_li" v-for="(list, index) in lists" :key="index">
       <input type="checkbox" v-model="list.isDone" />
       <span :class="{'list-done':list.isDone }">{{ list.text }}</span>
       <div v-if="list.isActive">
@@ -21,6 +21,7 @@
       <button class="editBtn" v-show="!list.isActive" @click="updateTodo(index)">編集</button>
     </li>
   </ul>
+</div>
 
 </template>
 
@@ -82,8 +83,20 @@ export default {
   text-decoration: line-through;
 }
 
-body {
-  background-color: rgba(16, 206, 1, 0.98);
+.contents {
+  margin: 16px auto;
+  text-align: center;
+}
+
+.contents_ul {
+  padding-left: 0;
+  list-style: none;
+  display: inline-block;
+}
+
+.contents_li {
+  list-style: none;
+  text-align: left;
 }
 
 .addBtn {

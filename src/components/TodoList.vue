@@ -1,13 +1,13 @@
 <template>
   <h1>{{ title }}</h1>
   <input type="text" v-model="newList" placeholder="内容"/>
-  <button @click.prevent="addTodo">追加</button>
+  <button class="addBtn" @click.prevent="addTodo">追加</button>
   <button  class="deleteBtn" @click="deleteTodo">削除</button>
 
 
   <p v-if="lists.length === 0" class="warningMessage">Todoがありません！</p>
   <ul v-else>
-    <input type="text" v-model="query">検索
+<!--    <input type="text" v-model="query">検索-->
 
     <li v-for="(list, index) in lists" :key="index">
       <input type="checkbox" v-model="list.isDone" />
@@ -18,7 +18,7 @@
         </span>
         <button @click="updateDone(index)">完了</button>
       </div>
-      <button v-show="!list.isActive" @click="updateTodo(index)">編集</button>
+      <button class="editBtn" v-show="!list.isActive" @click="updateTodo(index)">編集</button>
     </li>
   </ul>
 
@@ -30,7 +30,17 @@ export default {
   data(){
     return{
       newList: '',
-      lists: [],
+      lists: [
+        {
+          text: 'スーパーに行く',
+        },
+        {
+          text: 'クリーニングを出す',
+        },
+        {
+          text: 'ジムへ行く',
+        },
+      ],
       editTodo: false,
     }
   },
@@ -76,9 +86,18 @@ body {
   background-color: rgba(16, 206, 1, 0.98);
 }
 
+.addBtn {
+  margin: 5px;
+}
+
 .deleteBtn {
   background-color: red;
   color:white;
+  margin: 5px;
+}
+
+.editBtn {
+  margin: 5px;
 }
 
 .warningMessage {

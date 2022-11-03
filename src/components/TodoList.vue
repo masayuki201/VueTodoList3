@@ -61,7 +61,7 @@ export default {
     //編集
     updateTodo(index){
       this.lists[index].isActive = true
-      this.lists[index].item = this.list[index].item
+      this.lists[index].text = this.list[index].text
     },
     //完了
     updateDone(index){

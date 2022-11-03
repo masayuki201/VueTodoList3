@@ -16,7 +16,7 @@
         <span>
           <input type="text" v-model="list.text">
         </span>
-        <button @click="updateDone(index)">完了</button>
+        <button class="doneBtn" @click="updateDone(index)">完了</button>
       </div>
       <button class="editBtn" v-show="!list.isActive" @click="updateTodo(index)">編集</button>
     </li>
@@ -87,6 +87,7 @@ body {
 }
 
 .addBtn {
+  background-color: deepskyblue;
   margin: 5px;
 }
 
@@ -97,6 +98,11 @@ body {
 }
 
 .editBtn {
+  margin: 5px;
+}
+
+.doneBtn {
+  background-color: deepskyblue;
   margin: 5px;
 }
 

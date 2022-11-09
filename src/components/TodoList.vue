@@ -25,70 +25,98 @@
 
 </template>
 
-<script>
-export default {
-  name: "TodoList",
-  data() {
-    return {
-      keyword: '',
-      newList: '',
-      lists: [
-        {
-          text: 'スーパーに行く',
-        },
-        {
-          text: 'クリーニングを出す',
-        },
-        {
-          text: 'ジムへ行く',
-        },
-      ],
-      editTodo: false,
-    }
+<script setup>
+import {ref} from 'vue';
+
+const keyword = ref('');
+const newList = ref('');
+const lists = ref([
+  {
+    text: 'スーパーに行く',
   },
-  computed: {
-    filteredLists: function () {
-      const lists = [];
-      for (const i in this.lists) {
-        const list = this.lists[i];
-        if (list.text.indexOf(this.keyword) !== -1) {
-          lists.push(list);
-        }
-      }
-      return lists;
-    }
+  {
+    text: 'クリーニングを出す',
   },
-  methods: {
-    //追加
-    addTodo() {
-      if (!this.newList) {
-        alert('文字を入力して下さい')
-        return
-      }
-      this.lists.push({
-        isDone: false,
-        text: this.newList,
-      })
-      this.newList = ''
-    },
-    //編集
-    updateTodo(index) {
-      this.lists[index].isActive = true
-      this.lists[index].text = this.list[index].text
-    },
-    //完了
-    updateDone(index) {
-      this.lists[index].isActive = false
-    },
-    //削除
-    deleteTodo() {
-      this.lists = this.lists.filter((list) => !list.isDone)
-    },
+  {
+    text: 'ジムへ行く',
   },
-  props: {
-    title: String,
-  },
+]);
+
+const addTodo = () => {
+  if (!newList.value) {
+    alert('文字を入力して下さい')
+    return
+  }
+  lists.value.push({
+    isDone: false,
+    text: newList.value,
+  })
+  newList.value = ''
 }
+
+// export default {
+//   name: "TodoList",
+//   data() {
+//     return {
+//       keyword: '',
+//       newList: '',
+//       lists: [
+//         {
+//           text: 'スーパーに行く',
+//         },
+//         {
+//           text: 'クリーニングを出す',
+//         },
+//         {
+//           text: 'ジムへ行く',
+//         },
+//       ],
+//       editTodo: false,
+//     }
+//   },
+//   computed: {
+//     filteredLists: function () {
+//       const lists = [];
+//       for (const i in this.lists) {
+//         const list = this.lists[i];
+//         if (list.text.indexOf(this.keyword) !== -1) {
+//           lists.push(list);
+//         }
+//       }
+//       return lists;
+//     }
+//   },
+//   methods: {
+//     //追加
+//     addTodo() {
+//       if (!this.newList) {
+//         alert('文字を入力して下さい')
+//         return
+//       }
+//       this.lists.push({
+//         isDone: false,
+//         text: this.newList,
+//       })
+//       this.newList = ''
+//     },
+//     //編集
+//     updateTodo(index) {
+//       this.lists[index].isActive = true
+//       this.lists[index].text = this.list[index].text
+//     },
+//     //完了
+//     updateDone(index) {
+//       this.lists[index].isActive = false
+//     },
+//     //削除
+//     deleteTodo() {
+//       this.lists = this.lists.filter((list) => !list.isDone)
+//     },
+//   },
+//   props: {
+//     title: String,
+//   },
+// }
 </script>
 
 <style scoped>

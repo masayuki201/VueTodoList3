@@ -1,32 +1,5 @@
-<template>
-  <h1>{{ title }}</h1>
-  <input type="text" v-model="newList" placeholder="内容"/>
-  <button class="addBtn" @click.prevent="addTodo">追加</button>
-  <button class="deleteBtn" @click="deleteTodo">削除</button>
-  <br>
-  <input class="searchText" type="text" v-model="keyword" placeholder="検索">
-
-  <div class="contents">
-    <p v-if="lists.length === 0" class="warningMessage">Todoがありません！</p>
-    <ul class="contents_ul" v-else>
-      <li class="contents_li" v-for="(list, index) in filteredLists" :key="index">
-        <input type="checkbox" v-model="list.isDone"/>
-        <span :class="{'list-done':list.isDone }">{{ list.text }}</span>
-        <div v-if="list.isActive">
-        <span>
-          <input type="text" v-model="list.text">
-        </span>
-          <button class="doneBtn" @click="updateDone(index)">完了</button>
-        </div>
-        <button class="editBtn" v-show="!list.isActive" @click="updateTodo(index)">編集</button>
-      </li>
-    </ul>
-  </div>
-
-</template>
-
 <script setup>
-import {ref} from 'vue';
+import {ref, computed} from 'vue';
 
 const keyword = ref('');
 const newList = ref('');
@@ -42,6 +15,24 @@ const lists = ref([
   },
 ]);
 
+const filteredLists = computed(() => {
+  console.log('1')
+
+  const lists = [];
+  console.log('2')
+  console.log(lists)
+
+  for (const i in lists.value) {
+    console.log('3')
+
+    const list = lists[i].value;
+    if (list.text.indexOf(keyword.value) !== -1) {
+      lists.push(list);
+    }
+  }
+  return lists;
+})
+
 const addTodo = () => {
   if (!newList.value) {
     alert('文字を入力して下さい')
@@ -53,6 +44,12 @@ const addTodo = () => {
   })
   newList.value = ''
 }
+
+
+
+// props: {
+//     title: String,
+// },
 
 // export default {
 //   name: "TodoList",
@@ -118,6 +115,35 @@ const addTodo = () => {
 //   },
 // }
 </script>
+
+<template>
+<!--  <h1>{{ title }}</h1>-->
+  <input type="text" v-model="newList" placeholder="内容"/>
+  <button class="addBtn" @click.prevent="addTodo">追加</button>
+  <button class="deleteBtn" @click="deleteTodo">削除</button>
+  <br>
+  <input class="searchText" type="text" v-model="keyword" placeholder="検索">
+
+  <div class="contents">
+    <p v-if="lists.length === 0" class="warningMessage">Todoがありません！</p>
+    <ul class="contents_ul" v-else>
+      <li class="contents_li" v-for="(list, index) in filteredLists" :key="index">
+        <input type="checkbox" v-model="list.isDone"/>
+        <span :class="{'list-done':list.isDone }">{{ list.text }}</span>
+        <div v-if="list.isActive">
+        <span>
+          <input type="text" v-model="list.text">
+        </span>
+          <button class="doneBtn" @click="updateDone(index)">完了</button>
+        </div>
+        <button class="editBtn" v-show="!list.isActive" @click="updateTodo(index)">編集</button>
+      </li>
+    </ul>
+  </div>
+
+</template>
+
+
 
 <style scoped>
 .list-done {

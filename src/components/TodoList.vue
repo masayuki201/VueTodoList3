@@ -1,9 +1,9 @@
 <script setup>
-import {ref, computed} from 'vue';
+import {ref, reactive, computed} from 'vue';
 
 const keyword = ref('');
 const newList = ref('');
-const lists = ref([
+const lists = reactive([
   {
     text: 'スーパーに行く',
   },
@@ -15,30 +15,40 @@ const lists = ref([
   },
 ]);
 
+//検索
 const filteredLists = computed(() => {
   console.log('1')
 
-  const lists = [];
+  // const lists = [];
   console.log('2')
   console.log(lists)
 
-  for (const i in lists.value) {
+  for (const i in lists) {
     console.log('3')
+    console.log(lists[i].text)
 
-    const list = lists[i].value;
-    if (list.text.indexOf(keyword.value) !== -1) {
-      lists.push(list);
+    const list = lists[i].text;
+    console.log(list)
+
+    if (list.indexOf(keyword.value) !== -1) {
+      console.log('ifの中')
+
+      lists.text.push(list);
+
+
     }
   }
+  console.log('4')
   return lists;
 })
 
+//追加
 const addTodo = () => {
   if (!newList.value) {
     alert('文字を入力して下さい')
     return
   }
-  lists.value.push({
+  lists.push({
     isDone: false,
     text: newList.value,
   })

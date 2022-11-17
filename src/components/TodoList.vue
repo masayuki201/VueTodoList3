@@ -5,40 +5,46 @@ const keyword = ref('');
 const newList = ref('');
 const lists = reactive([
   {
+    isDone: false,
     text: 'スーパーに行く',
   },
   {
+    isDone: false,
     text: 'クリーニングを出す',
   },
   {
+    isDone: false,
     text: 'ジムへ行く',
   },
 ]);
 
 //検索
 const filteredLists = computed(() => {
-  console.log('1')
+console.log('1')
 
+console.log('2')
+console.log(lists)
   // const lists = [];
-  console.log('2')
-  console.log(lists)
 
-  for (const i in lists) {
-    console.log('3')
-    console.log(lists[i].text)
+  for (const i in lists.value) {
+console.log('3')
 
     const list = lists[i].text;
-    console.log(list)
+console.log(list)
+console.log(list.indexOf(keyword.value))
 
     if (list.indexOf(keyword.value) !== -1) {
-      console.log('ifの中')
+console.log('ifの中')
+console.log(list)
 
-      lists.text.push(list);
+
+      lists.push(list);
+console.log(lists)
 
 
     }
   }
-  console.log('4')
+console.log('4')
   return lists;
 })
 

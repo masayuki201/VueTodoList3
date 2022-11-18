@@ -26,7 +26,7 @@ console.log('2')
 console.log(lists)
   // const lists = [];
 
-  for (const i in lists.value) {
+  for (const i in lists) {
 console.log('3')
 
     const list = lists[i].text;
@@ -37,16 +37,24 @@ console.log(list.indexOf(keyword.value))
 console.log('ifの中')
 console.log(list)
 
-
+          // searchPush(list);
       lists.push(list);
 console.log(lists)
-
-
     }
   }
 console.log('4')
+  // const lists = [];
   return lists;
 })
+
+
+// const searchPush = (list) => {
+//   lists.push({
+//     isDone: false,
+//     text: list,
+//   })
+// }
+
 
 //追加
 const addTodo = () => {

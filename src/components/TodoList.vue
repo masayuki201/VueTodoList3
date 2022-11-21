@@ -70,7 +70,23 @@ const addTodo = () => {
   newList.value = ''
 }
 
+//編集
+const updateTodo = (index) => {
+  // console.log(list);
+  lists[index].isActive = true
 
+  // lists[index].text = list.value
+}
+
+//完了
+const updateDone = (index) => {
+  lists[index].isActive = false
+}
+
+//削除
+const deleteTodo = () => {
+  lists.value = lists.filter((list) => !list.isDone)
+}
 
 // props: {
 //     title: String,

@@ -18,6 +18,7 @@ const lists = reactive([
   },
 ]);
 
+//途中
 //検索
 const filteredLists = computed(() => {
 console.log('1')
@@ -38,7 +39,7 @@ console.log('ifの中')
 console.log(list)
 
           // searchPush(list);
-      lists.push(list);
+      // lists.push(list);
 console.log(lists)
     }
   }

@@ -1,73 +1,72 @@
 <script setup>
-import {ref, computed} from 'vue';
+import {ref, computed, reactive} from 'vue';
 
 const keyword = ref('');
 const newList = ref('');
-const store = createStore({
-    state: {
-      lists: [
-        {
-          isDone: false,
-          text: 'スーパーに行く',
-        },
-        {
-          isDone: false,
-          text: 'クリーニングを出す',
-        },
-        {
-          isDone: false,
-          text: 'ジムへ行く',
-        },
-      ],
-    },
-    getters: {
-      getTodos: state => state.lists
-    },
-    mutations: {
-    },
-    actions: {
-    }
-});
-
-
+const lists = reactive([
+  {
+    isDone: false,
+    text: 'スーパーに行く',
+  },
+  {
+    isDone: false,
+    text: 'クリーニングを出す',
+  },
+  {
+    isDone: false,
+    text: 'ジムへ行く',
+  },
+]);
 
 //途中実装中
 //検索
 const filteredLists = computed(() => {
-console.log('1')
-console.log(lists)
 
-  // const lists = [];
+  let searchKeyword =  keyword.value;
 
-  for (const i in lists.value) {
-console.log('2')
+  if(searchKeyword === "") return lists;
 
-    const list = lists.value[i].text;
-console.log(list)
-console.log(list.indexOf(keyword.value))
+  return lists.filter((list) => {
+    return (
+        lists.include(searchKeyword)
+    );
+  });
 
-    if(keyword.value) {
-      if (list.indexOf(keyword.value) !== -1) {
-console.log('ifの中')
-console.log(list)
 
-        searchPush(list);
-        // lists.push(list);
-console.log(lists.value)
-      }
-    }
-  }
-console.log('4')
-  return lists.value;
+  // console.log('1')
+  // console.log(lists)
+  //
+  // // const lists = [];
+  //
+  // for (const i in lists) {
+  //   console.log('2')
+  //
+  //   const list = lists[i].text;
+  //   console.log(list)
+  //   console.log(list.indexOf(keyword.value))
+  //
+  //   if(keyword.value) {
+  //     if (list.indexOf(keyword.value) !== -1) {
+  //       console.log('ifの中')
+  //       console.log(list)
+  //
+  //       searchPush(list);
+  //       // lists.push(list);
+  //       console.log(lists)
+  //     }
+  //   }
+  // }
+  // console.log('4')
+  // return lists;
 })
 
 
-const searchPush = (list) => {
-  lists.value.push({
-    isDone: false,
-    text: list,
-  })
-}
+// const searchPush = (list) => {
+//   lists.push({
+//     isDone: false,
+//     text: list,
+//   })
+// }
 
 
 //追加
@@ -76,7 +75,7 @@ const addTodo = () => {
     alert('文字を入力して下さい')
     return
   }
-  lists.value.push({
+  lists.push({
     isDone: false,
     text: newList.value,
   })
@@ -177,7 +176,7 @@ const updateDone = (index) => {
 </script>
 
 <template>
-<!--  <h1>{{ title }}</h1>-->
+  <!--  <h1>{{ title }}</h1>-->
   <input type="text" v-model="newList" placeholder="内容"/>
   <button class="addBtn" @click.prevent="addTodo">追加</button>
   <button class="deleteBtn" @click="deleteTodo">削除</button>

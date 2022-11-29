@@ -18,20 +18,19 @@ const lists = reactive([
   },
 ]);
 
-//途中実装中
 //検索
 const filteredLists = computed(() => {
 
-  let searchKeyword =  keyword.value;
+  let searchKeyword = keyword.value;
 
-  if(searchKeyword === "") return lists;
+  if (searchKeyword === "") return lists;
 
   return lists.filter((list) => {
     return (
-        lists.include(searchKeyword)
-    );
+        list.text.includes(searchKeyword)
+    )
   });
-
+})
 
   // console.log('1')
   // console.log(lists)
@@ -58,7 +57,7 @@ const filteredLists = computed(() => {
   // }
   // console.log('4')
   // return lists;
-})
+// })
 
 
 // const searchPush = (list) => {

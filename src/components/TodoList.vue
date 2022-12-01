@@ -96,14 +96,16 @@ const updateDone = (index) => {
 
 //途中実装中
 //削除
-// const deleteTodo = () => {
-//   console.log(lists)
-//
-//   lists.value = lists.filter((list) => !list.isDone)
-//   console.log(lists.value)
-//   lists.push(lists.value)
-//
-// }
+const deleteTodo = () => {
+  console.log(lists)
+  console.log(lists.text)
+
+  lists.filter((list) => !list.isDone);
+  // console.log(lists.value)
+  // lists.push(lists.value);
+  console.log(lists)
+
+}
 
 // props: {
 //     title: String,

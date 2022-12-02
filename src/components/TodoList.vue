@@ -100,10 +100,10 @@ const deleteTodo = () => {
   console.log(lists)
   console.log(lists.text)
 
-  lists.filter((list) => !list.isDone);
-  // console.log(lists.value)
+
+  lists.value = lists.filter((list) => !list.isDone);
   // lists.push(lists.value);
-  console.log(lists)
+  console.log(lists.value)
 
 }
 

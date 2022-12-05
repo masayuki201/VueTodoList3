@@ -101,7 +101,7 @@ const deleteTodo = () => {
   console.log(lists.text)
 
 
-  lists.value = lists.filter((list) => !list.isDone);
+  lists.splice((list) => !list.isDone);
   // lists.push(lists.value);
   console.log(lists.value)
 

@@ -87,7 +87,7 @@ const editTodo = (index) => {
 }
 
 //完了
-const updateDone = (index) => {
+const updateTodo = (index) => {
   lists[index].isActive = false
 }
 
@@ -184,7 +184,7 @@ const deleteTodo = (index) => {
         <span>
           <input type="text" v-model="list.text">
         </span>
-          <button class="doneBtn" @click="updateDone(index)">完了</button>
+          <button class="doneBtn" @click="updateTodo(index)">完了</button>
         </div>
         <button class="editBtn" v-show="!list.isActive" @click="editTodo(index)">編集</button>
 

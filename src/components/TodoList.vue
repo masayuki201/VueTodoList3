@@ -94,17 +94,10 @@ const updateDone = (index) => {
   lists[index].isActive = false
 }
 
-//途中実装中
 //削除
-const deleteTodo = () => {
-  console.log(lists)
-  console.log(lists.text)
-
-
-  lists.splice((list) => !list.isDone);
-  // lists.push(lists.value);
-  console.log(lists.value)
-
+const deleteTodo = (index) => {
+//選択したindexを1列だけ削除
+  filteredLists.value.splice(index, 1);
 }
 
 // props: {
@@ -180,7 +173,7 @@ const deleteTodo = () => {
   <!--  <h1>{{ title }}</h1>-->
   <input type="text" v-model="newList" placeholder="内容"/>
   <button class="addBtn" @click.prevent="addTodo">追加</button>
-  <button class="deleteBtn" @click="deleteTodo">削除</button>
+  <button class="deleteBtn" @click="deleteTodo(index)">削除</button>
   <br>
   <input class="searchText" type="text" v-model="keyword" placeholder="検索">
 
@@ -197,6 +190,9 @@ const deleteTodo = () => {
           <button class="doneBtn" @click="updateDone(index)">完了</button>
         </div>
         <button class="editBtn" v-show="!list.isActive" @click="updateTodo(index)">編集</button>
+
+        <button class="deleteBtn" @click="deleteTodo(index)">削除</button>
+
       </li>
     </ul>
   </div>

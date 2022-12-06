@@ -84,8 +84,6 @@ const addTodo = () => {
 //編集
 const editTodo = (index) => {
   lists[index].isActive = true
-  console.log(lists[index])
-  console.log(filteredLists.value[index])
 }
 
 //完了

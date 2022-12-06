@@ -82,11 +82,10 @@ const addTodo = () => {
 }
 
 //編集
-const updateTodo = (index) => {
-  // console.log(list);
+const editTodo = (index) => {
   lists[index].isActive = true
-
-  // lists[index].text = list.value
+  console.log(lists[index])
+  console.log(filteredLists.value[index])
 }
 
 //完了
@@ -189,7 +188,7 @@ const deleteTodo = (index) => {
         </span>
           <button class="doneBtn" @click="updateDone(index)">完了</button>
         </div>
-        <button class="editBtn" v-show="!list.isActive" @click="updateTodo(index)">編集</button>
+        <button class="editBtn" v-show="!list.isActive" @click="editTodo(index)">編集</button>
 
         <button class="deleteBtn" @click="deleteTodo(index)">削除</button>
 

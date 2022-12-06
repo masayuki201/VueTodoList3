@@ -170,7 +170,6 @@ const deleteTodo = (index) => {
   <!--  <h1>{{ title }}</h1>-->
   <input type="text" v-model="newList" placeholder="内容"/>
   <button class="addBtn" @click.prevent="addTodo">追加</button>
-  <button class="deleteBtn" @click="deleteTodo(index)">削除</button>
   <br>
   <input class="searchText" type="text" v-model="keyword" placeholder="検索">
 

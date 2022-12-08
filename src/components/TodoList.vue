@@ -1,5 +1,6 @@
 <script setup>
 import {ref, computed, reactive} from 'vue';
+import TodoList from "../../../vue_todolist1/src/components/TodoList";
 
 const keyword = ref('');
 const newList = ref('');
@@ -17,6 +18,14 @@ const lists = reactive([
     text: 'ジムへ行く',
   },
 ]);
+
+props: {
+    title: String,
+}
+
+const props = defineProps()
+
+
 
 //検索
 const filteredLists = computed(() => {
@@ -97,9 +106,8 @@ const deleteTodo = (index) => {
   filteredLists.value.splice(index, 1);
 }
 
-// props: {
-//     title: String,
-// },
+
+
 
 // export default {
 //   name: "TodoList",

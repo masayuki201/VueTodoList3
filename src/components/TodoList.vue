@@ -23,9 +23,9 @@ const lists = reactive([
 //     title: String,
 // }
 
-// const props = defineProps({
-//   title: String,
-// });
+const props = defineProps({
+  title: String,
+});
 
 //  検索
 const filteredLists = computed(() => {

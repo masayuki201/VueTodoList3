@@ -1,6 +1,5 @@
 <script setup>
 import { computed, reactive, ref } from 'vue';
-// import TodoList from "../../../vue_todolist1/src/components/TodoList";
 
 const keyword = ref('');
 const newList = ref('');
@@ -19,10 +18,6 @@ const lists = reactive([
   },
 ]);
 
-// props: {
-//     title: String,
-// }
-
 const props = defineProps({
   title: String,
 });
@@ -33,40 +28,6 @@ const filteredLists = computed(() => {
   if (searchKeyword === '') return lists;
   return lists.filter((list) => list.text.includes(searchKeyword));
 });
-
-// console.log('1')
-// console.log(lists)
-//
-// // const lists = [];
-//
-// for (const i in lists) {
-//   console.log('2')
-//
-//   const list = lists[i].text;
-//   console.log(list)
-//   console.log(list.indexOf(keyword.value))
-//
-//   if(keyword.value) {
-//     if (list.indexOf(keyword.value) !== -1) {
-//       console.log('ifの中')
-//       console.log(list)
-//
-//       searchPush(list);
-//       // lists.push(list);
-//       console.log(lists)
-//     }
-//   }
-// }
-// console.log('4')
-// return lists;
-// })
-
-// const searchPush = (list) => {
-//   lists.push({
-//     isDone: false,
-//     text: list,
-//   })
-// }
 
 //  追加
 const addTodo = () => {
@@ -97,69 +58,6 @@ const deleteTodo = (index) => {
   filteredLists.value.splice(index, 1);
 };
 
-// export default {
-//   name: "TodoList",
-//   data() {
-//     return {
-//       keyword: '',
-//       newList: '',
-//       lists: [
-//         {
-//           text: 'スーパーに行く',
-//         },
-//         {
-//           text: 'クリーニングを出す',
-//         },
-//         {
-//           text: 'ジムへ行く',
-//         },
-//       ],
-//       editTodo: false,
-//     }
-//   },
-//   computed: {
-//     filteredLists: function () {
-//       const lists = [];
-//       for (const i in this.lists) {
-//         const list = this.lists[i];
-//         if (list.text.indexOf(this.keyword) !== -1) {
-//           lists.push(list);
-//         }
-//       }
-//       return lists;
-//     }
-//   },
-//   methods: {
-//     //追加
-//     addTodo() {
-//       if (!this.newList) {
-//         alert('文字を入力して下さい')
-//         return
-//       }
-//       this.lists.push({
-//         isDone: false,
-//         text: this.newList,
-//       })
-//       this.newList = ''
-//     },
-//     //編集
-//     updateTodo(index) {
-//       this.lists[index].isActive = true
-//       this.lists[index].text = this.list[index].text
-//     },
-//     //完了
-//     updateDone(index) {
-//       this.lists[index].isActive = false
-//     },
-//     //削除
-//     deleteTodo() {
-//       this.lists = this.lists.filter((list) => !list.isDone)
-//     },
-//   },
-//   props: {
-//     title: String,
-//   },
-// }
 </script>
 
 <template>
@@ -183,9 +81,7 @@ const deleteTodo = (index) => {
             <button class="doneBtn" @click="updateTodo(index)">完了</button>
           </div>
           <button class="editBtn" v-show="!list.isActive" @click="editTodo(index)">編集</button>
-
           <button class="deleteBtn" @click="deleteTodo(index)">削除</button>
-
         </li>
       </ul>
     </div>

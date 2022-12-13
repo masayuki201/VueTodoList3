@@ -57,6 +57,7 @@ const deleteTodo = (index) => {
 //  選択したindexを1列だけ削除
 //   filteredLists.value.splice(index, 1);
   console.log(index);
+  console.log(list.text);
   console.log(filteredLists);
   filteredLists.value.splice(index, 1);
 

@@ -53,16 +53,22 @@ const updateTodo = (index) => {
 };
 
 //  削除
-const deleteTodo = (index) => {
+const deleteTodo = (i) => {
 //  選択したindexを1列だけ削除
 //   filteredLists.value.splice(index, 1);
-  console.log(index);
-  console.log(list.text);
-  console.log(filteredLists);
-  filteredLists.value.splice(index, 1);
-
-  console.log(filteredLists.value);
+//   console.log(index);
   console.log(lists);
+  // console.log(lists[index].text);
+
+  // console.log(lists.filter((list) => list.text.includes(keyword.value)));
+  console.log(filteredLists.value);
+  lists.splice(i, 1);
+
+  // lists.filter((list) => list.text.includes(keyword.value)).splice(index, 1);
+  //
+  // console.log(lists.filter((list) => list.text.includes(keyword.value)));
+  // console.log(filteredLists.value);
+  // console.log(lists);
 };
 
 </script>
@@ -82,13 +88,13 @@ const deleteTodo = (index) => {
           <input type="checkbox" v-model="list.isDone"/>
           <span :class="{'list-done':list.isDone }">{{ list.text }}</span>
           <div v-if="list.isActive">
-        <span>
-          <input type="text" v-model="list.text">
-        </span>
-            <button class="doneBtn" @click="updateTodo(index)">完了</button>
+            <span>
+              <input type="text" v-model="list.text">
+            </span>
+                <button class="doneBtn" @click="updateTodo(index)">完了</button>
           </div>
           <button class="editBtn" v-show="!list.isActive" @click="editTodo(index)">編集</button>
-          <button class="deleteBtn" @click="deleteTodo(index)">削除</button>
+          <button class="deleteBtn" @click.prevent="deleteTodo(i)">削除</button>
         </li>
       </ul>
     </div>

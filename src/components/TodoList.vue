@@ -20,6 +20,7 @@ const lists = reactive([
     text: 'ジムへ行く',
   },
 ]);
+const nextListId = ref(3);
 
 const props = defineProps({
   title: String,
@@ -39,7 +40,7 @@ const addTodo = () => {
     return;
   }
   lists.push({
-    i:
+    i: nextListId.value += 1,
     isDone: false,
     text: newList.value,
   });
@@ -57,7 +58,7 @@ const updateTodo = (index) => {
 };
 
 //  削除
-const deleteTodo = () => {
+const deleteTodo = (index) => {
 //  選択したindexを1列だけ削除
 //   filteredLists.value.splice(index, 1);
 //   console.log(index);
@@ -66,8 +67,9 @@ const deleteTodo = () => {
 
   // console.log(lists.filter((list) => list.text.includes(keyword.value)));
   console.log(filteredLists.value);
-  // lists.splice(i, 1);
-  console.log(lists.filter((list) => list.isDone));
+  console.log(filteredLists.value[index].i);
+  filteredLists.value.splice(filteredLists.value[index].i, 1);
+  // console.log(lists.filter((list) => list.isDone));
   // lists.splice(2, 1);
   // lists.filter((list) => list.text.includes(keyword.value)).splice(index, 1);
   //
@@ -99,7 +101,7 @@ const deleteTodo = () => {
                 <button class="doneBtn" @click="updateTodo(index)">完了</button>
           </div>
           <button class="editBtn" v-show="!list.isActive" @click="editTodo(index)">編集</button>
-          <button class="deleteBtn" @click="deleteTodo">削除</button>
+          <button class="deleteBtn" @click="deleteTodo(index)">削除</button>
         </li>
       </ul>
     </div>

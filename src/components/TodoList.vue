@@ -62,20 +62,18 @@ const deleteTodo = (index) => {
 //  選択したindexを1列だけ削除
 //   filteredLists.value.splice(index, 1);
   console.log(index);
-  console.log(lists);
+  console.log(filteredLists.value[index]);
   // console.log(lists[index].text);
 
   // console.log(lists.filter((list) => list.text.includes(keyword.value)));
   console.log(filteredLists.value);
-  console.log(filteredLists.value[index].i);
+  // console.log(filteredLists.value[index].i);
+  // filteredLists.value.splice(filteredLists.value[index], 1);
+  // filteredLists.value.splice(index, 1);
   filteredLists.value.splice(filteredLists.value[index], 1);
   // console.log(lists.filter((list) => list.isDone));
-  // lists.splice(2, 1);
   // lists.filter((list) => list.text.includes(keyword.value)).splice(index, 1);
-  //
   // console.log(lists.filter((list) => list.text.includes(keyword.value)));
-  // console.log(filteredLists.value);
-  // console.log(lists);
 };
 
 </script>

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, reactive, ref } from 'vue';
+import { computed, reactive, ref, toRefs } from 'vue';
 
 const keyword = ref('');
 const newList = ref('');
@@ -20,6 +20,7 @@ const lists = reactive([
     text: 'ジムへ行く',
   },
 ]);
+
 const nextListId = ref(3);
 
 const props = defineProps({
@@ -70,8 +71,8 @@ const deleteTodo = (index) => {
   // console.log(filteredLists.value[index].i);
   // filteredLists.value.splice(filteredLists.value[index], 1);
   // filteredLists.value.splice(index, 1);
-  filteredLists.value.splice(filteredLists.value[index], 1);
-  // console.log(lists.filter((list) => list.isDone));
+  // filteredLists.value.splice(filteredLists.value[index], 1);
+  filteredLists.value = filteredLists.value.filter((list) => !list.isDone);
   // lists.filter((list) => list.text.includes(keyword.value)).splice(index, 1);
   // console.log(lists.filter((list) => list.text.includes(keyword.value)));
 };
